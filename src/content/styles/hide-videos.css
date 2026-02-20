@@ -1,0 +1,46 @@
+/* hide-videos.css — html.wm-hide-videos일 때만 적용 */
+
+/* CSS로 동영상 숨김 (일반 iframe은 안 건드림) */
+html.wm-hide-videos video:not([class*="wm-"]),
+html.wm-hide-videos embed:not([class*="wm-"]),
+html.wm-hide-videos object:not([class*="wm-"]),
+html.wm-hide-videos iframe[src*="youtube"]:not([class*="wm-"]),
+html.wm-hide-videos iframe[src*="youtu.be"]:not([class*="wm-"]),
+html.wm-hide-videos iframe[src*="twitch"]:not([class*="wm-"]),
+html.wm-hide-videos iframe[src*="vimeo"]:not([class*="wm-"]),
+html.wm-hide-videos iframe[src*="dailymotion"]:not([class*="wm-"]),
+html.wm-hide-videos iframe[src*="tiktok"]:not([class*="wm-"]),
+html.wm-hide-videos iframe[src*="chzzk"]:not([class*="wm-"]),
+html.wm-hide-videos iframe[src*="afreeca"]:not([class*="wm-"]),
+html.wm-hide-videos [data-src*="youtube"],
+html.wm-hide-videos [data-src*="youtu.be"] {
+  display: none !important;
+}
+
+/* JS wrapper 스타일 */
+html.wm-hide-videos .wm-vid-wrap {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+html.wm-hide-videos .wm-vid-wrap > video,
+html.wm-hide-videos .wm-vid-wrap > iframe {
+  position: absolute !important;
+  width: 0 !important;
+  height: 0 !important;
+  visibility: hidden !important;
+}
+
+html.wm-hide-videos .wm-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e0e0e0;
+  border: 1px dashed #aaa;
+  color: #888;
+  font-size: 13px;
+  pointer-events: none;
+}

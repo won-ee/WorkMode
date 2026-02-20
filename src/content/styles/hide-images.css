@@ -1,0 +1,46 @@
+/* hide-images.css — html.wm-hide-images일 때만 적용 */
+
+/* CSS로 이미지 먼저 숨김 */
+html.wm-hide-images img:not([class*="wm-"]),
+html.wm-hide-images picture:not([class*="wm-"]),
+html.wm-hide-images canvas:not([class*="wm-"]) {
+  visibility: hidden !important;
+  max-height: 0 !important;
+  max-width: 0 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  display: inline-block !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+/* background-image 제거 (body 제외 — 격자 배경 보존) */
+html.wm-hide-images *:not([class*="wm-"]):not([id^="wm-"]):not(body) {
+  background-image: none !important;
+  list-style-image: none !important;
+}
+
+/* ::before/::after 배경도 제거 */
+html.wm-hide-images *:not([class*="wm-"]):not([id^="wm-"])::before,
+html.wm-hide-images *:not([class*="wm-"]):not([id^="wm-"])::after {
+  background-image: none !important;
+}
+
+/* JS wrapper — 이미지 완전히 숨김 */
+html.wm-hide-images .wm-img-wrap {
+  display: inline-block !important;
+  max-height: 0 !important;
+  max-width: 0 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+html.wm-hide-images .wm-overlay {
+  display: none !important;
+}

@@ -1,0 +1,1246 @@
+/* base.css — 메인 위장 스타일 */
+
+/* FOUC 차단 — storage 읽는 동안 페이지 숨김 */
+html[data-wm-loading] {
+  visibility: hidden !important;
+}
+
+/* 콘텐츠 레이아웃은 절대 안 건드림 (font-size, display 등)
+   프레임 + 색상 균일화만으로 위장 */
+
+html.wm-active {
+  --wm-bg: #fff;
+  --wm-text: #333;
+  --wm-border: #e2e2e2;
+}
+
+/* 색상 균일화 */
+
+/* 텍스트 + 커서 */
+html.wm-active *:not([class*="wm-"]):not([id^="wm-"]) {
+  color: var(--wm-text) !important;
+  text-shadow: none !important;
+  cursor: default !important;
+}
+
+/* 테두리/그림자 */
+html.wm-active *:not([class*="wm-"]):not([id^="wm-"]),
+html.wm-active *:not([class*="wm-"]):not([id^="wm-"])::before,
+html.wm-active *:not([class*="wm-"]):not([id^="wm-"])::after {
+  border-color: #d0d0d0 !important;
+  outline-color: #d0d0d0 !important;
+  box-shadow: none !important;
+  text-decoration-color: #d0d0d0 !important;
+}
+
+/* ::before/::after 색상 (JS로 못 잡는 pseudo) */
+html.wm-active a::before,
+html.wm-active a::after,
+html.wm-active li::before,
+html.wm-active li::after,
+html.wm-active nav *::before,
+html.wm-active nav *::after,
+html.wm-active [class*="menu"]::before,
+html.wm-active [class*="menu"]::after,
+html.wm-active [class*="tab"]:not([class*="wm-"])::before,
+html.wm-active [class*="tab"]:not([class*="wm-"])::after,
+html.wm-active [class*="btn"]::before,
+html.wm-active [class*="btn"]::after,
+html.wm-active [class*="icon"]::before,
+html.wm-active [class*="icon"]::after {
+  background-color: transparent !important;
+  border-color: #d0d0d0 !important;
+  color: #d0d0d0 !important;
+}
+
+/* hr */
+html.wm-active hr:not([class*="wm-"]) {
+  border-color: #d0d0d0 !important;
+  background-color: #d0d0d0 !important;
+  color: #d0d0d0 !important;
+}
+
+html.wm-active a:not([class*="wm-"]),
+html.wm-active a:visited:not([class*="wm-"]) {
+  color: var(--wm-text) !important;
+  text-decoration: none !important;
+}
+
+/* input은 커서 유지 */
+html.wm-active input:not([class*="wm-"]),
+html.wm-active textarea:not([class*="wm-"]),
+html.wm-active select:not([class*="wm-"]) {
+  cursor: text !important;
+}
+
+/* 외관 평탄화 */
+
+html.wm-active *:not([class*="wm-"]):not([id^="wm-"]):not(img):not(video):not(canvas):not(body):not(html) {
+  background-color: transparent !important;
+  border-radius: 0 !important;
+}
+
+/* body 레이아웃 (프레임 공간 확보) */
+
+html.wm-active,
+html.wm-active body {
+  background-color: var(--wm-bg) !important;
+}
+
+/* 스프레드시트 테마 body */
+html.wm-active.wm-theme-spreadsheet body {
+  margin-top: 94px !important;
+  margin-left: 200px !important;
+  margin-bottom: 30px !important;
+}
+
+/* ERP 테마 body */
+html.wm-active.wm-theme-erp body {
+  margin-top: 106px !important;
+  margin-left: 220px !important;
+  margin-bottom: 30px !important;
+}
+
+/* Minimal 테마 body (프레임 없음, margin 변경 없음) */
+html.wm-active.wm-theme-minimal body {
+  margin: 0 !important;
+}
+
+/* Email 테마 body */
+html.wm-active.wm-theme-email body {
+  margin-top: 106px !important;
+  margin-left: 420px !important;
+  margin-bottom: 30px !important;
+  overflow-x: auto !important;
+}
+
+/* 스프레드시트 프레임 */
+
+/* 상단 메뉴바 */
+.wm-menubar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 70px !important;
+  z-index: 999999 !important;
+  background: #f3f3f3 !important;
+  border-bottom: 1px solid #c0c0c0 !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.wm-menubar-row {
+  display: flex !important;
+  align-items: center !important;
+  height: 35px !important;
+  padding: 0 8px !important;
+  gap: 2px !important;
+  background: transparent !important;
+}
+
+.wm-menu-item {
+  padding: 4px 8px !important;
+  font-size: 13px !important;
+  color: #444 !important;
+  cursor: default !important;
+  border-radius: 4px !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+}
+
+.wm-menu-item:hover {
+  background: #e0e0e0 !important;
+}
+
+.wm-formula-row {
+  display: flex !important;
+  align-items: center !important;
+  height: 35px !important;
+  padding: 0 4px !important;
+  gap: 4px !important;
+  border-top: 1px solid #ddd !important;
+  background: transparent !important;
+}
+
+.wm-cell-addr {
+  width: 56px !important;
+  height: 22px !important;
+  border: 1px solid #c0c0c0 !important;
+  background: #fff !important;
+  font-size: 12px !important;
+  color: #333 !important;
+  text-align: center !important;
+  line-height: 22px !important;
+  flex-shrink: 0 !important;
+}
+
+.wm-fx-label {
+  font-size: 13px !important;
+  color: #999 !important;
+  padding: 0 6px !important;
+  flex-shrink: 0 !important;
+  background: transparent !important;
+}
+
+.wm-formula-input {
+  flex: 1 !important;
+  height: 22px !important;
+  border: 1px solid #c0c0c0 !important;
+  background: #fff !important;
+  font-size: 12px !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+  color: #333 !important;
+  line-height: 22px !important;
+  padding: 0 6px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+}
+
+/* 열 헤더 (A, B, C ...) */
+.wm-col-headers {
+  position: fixed !important;
+  top: 70px !important;
+  left: 200px !important;
+  right: 0 !important;
+  height: 24px !important;
+  z-index: 999998 !important;
+  background: #f8f8f8 !important;
+  border-bottom: 1px solid #c0c0c0 !important;
+  display: flex !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.wm-col-header {
+  width: 80px !important;
+  min-width: 80px !important;
+  height: 24px !important;
+  line-height: 24px !important;
+  font-size: 11px !important;
+  color: #666 !important;
+  text-align: center !important;
+  border-right: 1px solid #e8e8e8 !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+  background: transparent !important;
+  box-sizing: border-box !important;
+}
+
+.wm-col-header-selected {
+  background: #d6e4f0 !important;
+  color: #217346 !important;
+  font-weight: 600 !important;
+}
+
+/* 행 번호 */
+.wm-row-numbers {
+  position: fixed !important;
+  top: 94px !important;
+  left: 150px !important;
+  bottom: 30px !important;
+  width: 50px !important;
+  z-index: 999998 !important;
+  background: #f8f8f8 !important;
+  border-right: 1px solid #c0c0c0 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.wm-row-num {
+  height: 24px !important;
+  line-height: 24px !important;
+  font-size: 11px !important;
+  color: #666 !important;
+  text-align: center !important;
+  border-bottom: 1px solid #e8e8e8 !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+  background: transparent !important;
+}
+
+/* 시트 탐색 패널 */
+.wm-sheet-nav {
+  position: fixed !important;
+  top: 70px !important;
+  left: 0 !important;
+  bottom: 30px !important;
+  width: 150px !important;
+  z-index: 999998 !important;
+  background: #f5f6f8 !important;
+  border-right: 1px solid #d0d0d0 !important;
+  overflow-y: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+}
+
+.wm-sheet-nav-header {
+  padding: 10px 12px 6px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #888 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.3px !important;
+  background: transparent !important;
+  cursor: default !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+}
+
+.wm-sheet-nav-item {
+  display: flex !important;
+  align-items: center !important;
+  padding: 7px 12px !important;
+  gap: 6px !important;
+  font-size: 12px !important;
+  color: #444 !important;
+  cursor: default !important;
+  background: transparent !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.wm-sheet-nav-item:hover {
+  background: #e8eaed !important;
+}
+
+.wm-sheet-nav-active {
+  background: #d6e4f0 !important;
+  font-weight: 600 !important;
+  color: #217346 !important;
+}
+
+.wm-sheet-nav-active:hover {
+  background: #c8daea !important;
+}
+
+.wm-sheet-nav-icon {
+  font-size: 14px !important;
+  color: #217346 !important;
+  flex-shrink: 0 !important;
+  background: transparent !important;
+}
+
+.wm-sheet-nav-label {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  background: transparent !important;
+}
+
+/* 저장소 사용량 */
+.wm-sheet-storage {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  padding: 10px 12px !important;
+  border-top: 1px solid #e0e0e0 !important;
+  background: transparent !important;
+}
+
+.wm-sheet-storage-text {
+  font-size: 10px !important;
+  color: #888 !important;
+  margin-bottom: 4px !important;
+  background: transparent !important;
+}
+
+.wm-sheet-storage-bar {
+  height: 4px !important;
+  background: #e0e0e0 !important;
+  border-radius: 2px !important;
+  overflow: hidden !important;
+}
+
+.wm-sheet-storage-fill {
+  width: 50.7% !important;
+  height: 100% !important;
+  background: #888 !important;
+  border-radius: 2px !important;
+}
+
+/* 행번호-열헤더 교차점 (좌상단 빈 칸) */
+.wm-col-headers::before {
+  content: "" !important;
+  position: fixed !important;
+  top: 70px !important;
+  left: 150px !important;
+  width: 50px !important;
+  height: 24px !important;
+  background: #f0f0f0 !important;
+  border-right: 1px solid #c0c0c0 !important;
+  border-bottom: 1px solid #c0c0c0 !important;
+  z-index: 999999 !important;
+  box-sizing: border-box !important;
+}
+
+/* 하단 시트 탭 */
+.wm-sheet-tabs {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 30px !important;
+  z-index: 999998 !important;
+  background: #f0f0f0 !important;
+  border-top: 1px solid #c0c0c0 !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 8px !important;
+  gap: 0 !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+  margin: 0 !important;
+}
+
+.wm-sheet-tab {
+  padding: 4px 16px !important;
+  font-size: 12px !important;
+  color: #555 !important;
+  cursor: default !important;
+  border: 1px solid transparent !important;
+  border-bottom: none !important;
+  background: transparent !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  position: relative !important;
+}
+
+.wm-sheet-tab-active {
+  background: #fff !important;
+  border-color: #c0c0c0 !important;
+  border-bottom: 1px solid #fff !important;
+  color: #333 !important;
+  font-weight: bold !important;
+  margin-bottom: -1px !important;
+}
+
+.wm-sheet-tab-add {
+  font-size: 16px !important;
+  color: #888 !important;
+  padding: 4px 10px !important;
+}
+
+/* ERP 테마 */
+
+/* 상단 바 */
+.wm-erp-topbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 40px !important;
+  z-index: 999999 !important;
+  background: #1B3A5C !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 16px !important;
+  gap: 10px !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+  margin: 0 !important;
+}
+
+.wm-erp-logo {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+}
+
+.wm-erp-sep {
+  font-size: 14px !important;
+  color: rgba(255,255,255,0.4) !important;
+  background: transparent !important;
+}
+
+.wm-erp-breadcrumb {
+  font-size: 12px !important;
+  color: rgba(255,255,255,0.85) !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+}
+
+/* 사이드 메뉴 */
+.wm-erp-sidemenu {
+  position: fixed !important;
+  top: 40px !important;
+  left: 0 !important;
+  bottom: 30px !important;
+  width: 180px !important;
+  z-index: 999998 !important;
+  background: #f5f6f8 !important;
+  border-right: 1px solid #d0d0d0 !important;
+  overflow-y: auto !important;
+  padding: 8px 0 !important;
+  margin: 0 !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+}
+
+.wm-erp-menu-item {
+  display: flex !important;
+  align-items: center !important;
+  padding: 7px 12px !important;
+  font-size: 13px !important;
+  color: #333 !important;
+  cursor: default !important;
+  gap: 4px !important;
+  background: transparent !important;
+}
+
+.wm-erp-menu-item:hover {
+  background: #e8eaed !important;
+}
+
+.wm-erp-menu-open {
+  font-weight: 600 !important;
+  color: #1B3A5C !important;
+}
+
+.wm-erp-menu-arrow {
+  font-size: 10px !important;
+  width: 12px !important;
+  text-align: center !important;
+  flex-shrink: 0 !important;
+  color: #888 !important;
+  background: transparent !important;
+}
+
+.wm-erp-menu-sub {
+  padding: 6px 12px 6px 32px !important;
+  font-size: 12px !important;
+  color: #555 !important;
+  cursor: default !important;
+  background: transparent !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.wm-erp-menu-sub:hover {
+  background: #e8eaed !important;
+}
+
+.wm-erp-menu-active {
+  color: #1B3A5C !important;
+  font-weight: 600 !important;
+  background: #dce3ed !important;
+}
+
+.wm-erp-menu-badge {
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  background: #1B3A5C !important;
+  padding: 1px 6px !important;
+  border-radius: 8px !important;
+  line-height: 1.4 !important;
+}
+
+.wm-erp-menu-badge-red {
+  background: #d63031 !important;
+}
+
+.wm-erp-menu-badge-blue {
+  background: #0984e3 !important;
+  font-size: 9px !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* 필터 바 */
+.wm-erp-filterbar {
+  position: fixed !important;
+  top: 40px !important;
+  left: 180px !important;
+  right: 0 !important;
+  height: 36px !important;
+  z-index: 999998 !important;
+  background: #f0f1f3 !important;
+  border-bottom: 1px solid #d0d0d0 !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 14px !important;
+  gap: 8px !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+  margin: 0 !important;
+}
+
+.wm-erp-filter-label {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #555 !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+}
+
+.wm-erp-filter-select {
+  font-size: 11px !important;
+  color: #333 !important;
+  background: #fff !important;
+  border: 1px solid #c0c0c0 !important;
+  padding: 3px 8px !important;
+  height: 24px !important;
+  line-height: 24px !important;
+  white-space: nowrap !important;
+  cursor: default !important;
+}
+
+.wm-erp-filter-btn {
+  font-size: 11px !important;
+  color: #fff !important;
+  background: #1B3A5C !important;
+  border: none !important;
+  padding: 3px 14px !important;
+  height: 24px !important;
+  line-height: 24px !important;
+  cursor: default !important;
+  white-space: nowrap !important;
+}
+
+/* ERP 열 헤더 */
+.wm-erp-col-headers {
+  position: fixed !important;
+  top: 76px !important;
+  left: 180px !important;
+  right: 0 !important;
+  height: 30px !important;
+  z-index: 999998 !important;
+  background: #e8eaed !important;
+  border-bottom: 1px solid #c0c0c0 !important;
+  display: flex !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.wm-erp-col-header {
+  height: 30px !important;
+  line-height: 30px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #444 !important;
+  text-align: center !important;
+  border-right: 1px solid #d0d0d0 !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+  background: transparent !important;
+  box-sizing: border-box !important;
+}
+
+/* ERP 행 번호 */
+.wm-erp-row-numbers {
+  position: fixed !important;
+  top: 106px !important;
+  left: 180px !important;
+  bottom: 30px !important;
+  width: 40px !important;
+  z-index: 999998 !important;
+  background: #f0f1f3 !important;
+  border-right: 1px solid #d0d0d0 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.wm-erp-row-num {
+  height: 30px !important;
+  line-height: 30px !important;
+  font-size: 11px !important;
+  color: #888 !important;
+  text-align: center !important;
+  border-bottom: 1px solid #e2e2e2 !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+  background: transparent !important;
+}
+
+/* ERP 하단 탭 */
+.wm-erp-tabs {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 30px !important;
+  z-index: 999998 !important;
+  background: #e8eaed !important;
+  border-top: 1px solid #c0c0c0 !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 8px !important;
+  gap: 0 !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+  margin: 0 !important;
+}
+
+.wm-erp-tab {
+  padding: 5px 20px !important;
+  font-size: 12px !important;
+  color: #555 !important;
+  cursor: default !important;
+  border-right: 1px solid #d0d0d0 !important;
+  background: transparent !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+.wm-erp-tab-active {
+  background: #fff !important;
+  color: #1B3A5C !important;
+  font-weight: 600 !important;
+}
+
+.wm-erp-pagination {
+  margin-left: auto !important;
+  font-size: 11px !important;
+  color: #888 !important;
+  white-space: nowrap !important;
+  padding-right: 8px !important;
+  background: transparent !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+}
+
+.wm-erp-page-info {
+  background: transparent !important;
+}
+
+.wm-erp-page-num {
+  display: inline-block !important;
+  width: 20px !important;
+  height: 20px !important;
+  line-height: 20px !important;
+  text-align: center !important;
+  font-size: 11px !important;
+  color: #666 !important;
+  cursor: default !important;
+  background: transparent !important;
+  border-radius: 2px !important;
+}
+
+.wm-erp-page-active {
+  color: #fff !important;
+  background: #1B3A5C !important;
+  font-weight: 600 !important;
+}
+
+.wm-erp-page-arrow {
+  font-size: 9px !important;
+  color: #888 !important;
+  padding: 0 4px !important;
+  cursor: default !important;
+  background: transparent !important;
+}
+
+/* 가짜 테이블 헤더 */
+.wm-erp-table-header {
+  position: fixed !important;
+  top: 106px !important;
+  left: 220px !important;
+  right: 0 !important;
+  height: 30px !important;
+  z-index: 999997 !important;
+  background: #f0f0f0 !important;
+  border-bottom: 1px solid #d0d0d0 !important;
+  display: flex !important;
+  align-items: center !important;
+  pointer-events: none !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.wm-erp-table-header-cell {
+  height: 30px !important;
+  line-height: 30px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #555 !important;
+  text-align: center !important;
+  border-right: 1px solid #d0d0d0 !important;
+  background: transparent !important;
+  box-sizing: border-box !important;
+}
+
+/* Email 테마 */
+
+/* 상단 바 */
+.wm-email-topbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 40px !important;
+  z-index: 999999 !important;
+  background: #0078D4 !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 16px !important;
+  gap: 10px !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+  margin: 0 !important;
+}
+
+.wm-email-logo {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+}
+
+.wm-email-sep {
+  font-size: 14px !important;
+  color: rgba(255,255,255,0.4) !important;
+  background: transparent !important;
+}
+
+.wm-email-title {
+  font-size: 13px !important;
+  color: rgba(255,255,255,0.9) !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+}
+
+/* 툴바 */
+.wm-email-toolbar {
+  position: fixed !important;
+  top: 40px !important;
+  left: 420px !important;
+  right: 0 !important;
+  height: 36px !important;
+  z-index: 999998 !important;
+  background: #f3f3f3 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 12px !important;
+  gap: 4px !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+  margin: 0 !important;
+}
+
+.wm-email-toolbar-btn {
+  font-size: 12px !important;
+  color: #444 !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 5px 12px !important;
+  cursor: default !important;
+  white-space: nowrap !important;
+}
+
+.wm-email-toolbar-btn:hover {
+  background: #e0e0e0 !important;
+}
+
+.wm-email-toolbar-sep {
+  width: 1px !important;
+  height: 18px !important;
+  background: #d0d0d0 !important;
+  margin: 0 4px !important;
+}
+
+.wm-email-toolbar-search {
+  margin-left: auto !important;
+  border: 1px solid #d0d0d0 !important;
+  padding: 3px 24px 3px 8px !important;
+  font-size: 12px !important;
+  color: #999 !important;
+  background: #fff !important;
+  white-space: nowrap !important;
+  cursor: default !important;
+}
+
+/* 폴더 목록 */
+.wm-email-sidemenu {
+  position: fixed !important;
+  top: 40px !important;
+  left: 0 !important;
+  bottom: 30px !important;
+  width: 200px !important;
+  z-index: 999998 !important;
+  background: #f3f3f3 !important;
+  border-right: 1px solid #e0e0e0 !important;
+  overflow-y: auto !important;
+  padding: 8px 0 !important;
+  margin: 0 !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+}
+
+.wm-email-folder {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 8px 14px !important;
+  font-size: 13px !important;
+  color: #333 !important;
+  cursor: default !important;
+  background: transparent !important;
+}
+
+.wm-email-folder:hover {
+  background: #e5e5e5 !important;
+}
+
+.wm-email-folder-active {
+  background: #d6e4f0 !important;
+  font-weight: 600 !important;
+  color: #0078D4 !important;
+}
+
+.wm-email-folder-active:hover {
+  background: #c8daea !important;
+}
+
+.wm-email-folder-label {
+  background: transparent !important;
+}
+
+.wm-email-folder-badge {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #0078D4 !important;
+  background: transparent !important;
+}
+
+.wm-email-folder-indent {
+  padding-left: 28px !important;
+}
+
+.wm-email-sep-line {
+  height: 1px !important;
+  background: #d8d8d8 !important;
+  margin: 6px 12px !important;
+}
+
+.wm-email-section-header {
+  padding: 8px 14px 4px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #888 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  background: transparent !important;
+  cursor: default !important;
+}
+
+.wm-email-label-dot {
+  display: inline-block !important;
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  flex-shrink: 0 !important;
+  margin-right: 6px !important;
+}
+
+/* Email 열 헤더 */
+.wm-email-col-headers {
+  position: fixed !important;
+  top: 76px !important;
+  left: 420px !important;
+  right: 0 !important;
+  height: 30px !important;
+  z-index: 999998 !important;
+  background: #fafafa !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  display: flex !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.wm-email-col-header {
+  height: 30px !important;
+  line-height: 30px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #666 !important;
+  padding: 0 12px !important;
+  border-right: 1px solid #e8e8e8 !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+  background: transparent !important;
+  box-sizing: border-box !important;
+  white-space: nowrap !important;
+}
+
+/* 하단 메일 수 */
+.wm-email-footer {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 30px !important;
+  z-index: 999998 !important;
+  background: #f3f3f3 !important;
+  border-top: 1px solid #e0e0e0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  padding: 0 16px !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+  margin: 0 !important;
+}
+
+.wm-email-footer-text {
+  font-size: 11px !important;
+  color: #888 !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+}
+
+/* 메일 미리보기 목록 */
+.wm-email-mail-list {
+  position: fixed !important;
+  top: 40px !important;
+  left: 200px !important;
+  width: 220px !important;
+  bottom: 30px !important;
+  z-index: 999998 !important;
+  background: #fff !important;
+  border-right: 1px solid #e0e0e0 !important;
+  overflow-y: auto !important;
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.wm-email-mail-item {
+  padding: 10px 12px !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+  cursor: default !important;
+  background: transparent !important;
+}
+
+.wm-email-mail-unread {
+  border-left: 2px solid #0078D4 !important;
+}
+
+.wm-email-mail-unread .wm-email-mail-sender,
+.wm-email-mail-unread .wm-email-mail-subject {
+  font-weight: 700 !important;
+  color: #111 !important;
+}
+
+.wm-email-mail-selected {
+  background: #e8f0fe !important;
+}
+
+.wm-email-mail-line1 {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 2px !important;
+  background: transparent !important;
+}
+
+.wm-email-mail-sender {
+  font-size: 12px !important;
+  color: #444 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+}
+
+.wm-email-mail-time {
+  font-size: 10px !important;
+  color: #999 !important;
+  flex-shrink: 0 !important;
+  margin-left: 8px !important;
+  background: transparent !important;
+}
+
+.wm-email-mail-subject {
+  font-size: 11px !important;
+  color: #666 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+}
+
+/* 장식용 영역 */
+
+/* Spreadsheet */
+.wm-col-headers,
+.wm-row-numbers,
+.wm-sheet-tabs {
+  pointer-events: none !important;
+}
+
+/* ERP (.wm-erp-table-header 는 이미 적용됨) */
+.wm-erp-col-headers,
+.wm-erp-row-numbers,
+.wm-erp-tabs {
+  pointer-events: none !important;
+}
+
+/* Email */
+.wm-email-col-headers,
+.wm-email-mail-list,
+.wm-email-footer {
+  pointer-events: none !important;
+}
+
+/* ≤ 1100px: 사이드바 축소 */
+
+@media (max-width: 1100px) {
+
+  /*  Spreadsheet  */
+  html.wm-active.wm-theme-spreadsheet body {
+    margin-left: 90px !important;
+  }
+
+  .wm-sheet-nav {
+    width: 40px !important;
+    overflow: hidden !important;
+    transition: width 0.2s ease !important;
+  }
+  .wm-sheet-nav:hover {
+    width: 150px !important;
+    overflow-y: auto !important;
+    z-index: 999999 !important;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.15) !important;
+  }
+
+  .wm-row-numbers {
+    left: 40px !important;
+  }
+
+  .wm-col-headers {
+    left: 90px !important;
+  }
+
+  .wm-col-headers::before {
+    left: 40px !important;
+  }
+
+  /*  ERP  */
+  html.wm-active.wm-theme-erp body {
+    margin-left: 80px !important;
+  }
+
+  .wm-erp-sidemenu {
+    width: 40px !important;
+    overflow: hidden !important;
+    transition: width 0.2s ease !important;
+  }
+  .wm-erp-sidemenu:hover {
+    width: 180px !important;
+    overflow-y: auto !important;
+    z-index: 999999 !important;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.15) !important;
+  }
+
+  .wm-erp-filterbar {
+    left: 40px !important;
+  }
+
+  .wm-erp-col-headers {
+    left: 40px !important;
+  }
+
+  .wm-erp-row-numbers {
+    left: 40px !important;
+  }
+
+  .wm-erp-table-header {
+    left: 80px !important;
+  }
+
+  /*  Email  */
+  html.wm-active.wm-theme-email body {
+    margin-left: 40px !important;
+  }
+
+  .wm-email-sidemenu {
+    width: 40px !important;
+    overflow: hidden !important;
+    transition: width 0.2s ease !important;
+  }
+  .wm-email-sidemenu:hover {
+    width: 200px !important;
+    overflow-y: auto !important;
+    z-index: 999999 !important;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.15) !important;
+  }
+
+  .wm-email-mail-list {
+    display: none !important;
+  }
+
+  .wm-email-toolbar {
+    left: 40px !important;
+  }
+
+  .wm-email-col-headers {
+    left: 40px !important;
+  }
+}
+
+/* ≤ 800px: 사이드바 숨김, 상단바만 유지 */
+
+@media (max-width: 800px) {
+
+  /*  Spreadsheet  */
+  html.wm-active.wm-theme-spreadsheet body {
+    margin-top: 36px !important;
+    margin-left: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .wm-menubar {
+    height: 35px !important;
+  }
+
+  .wm-formula-row {
+    display: none !important;
+  }
+
+  .wm-sheet-nav,
+  .wm-row-numbers,
+  .wm-col-headers,
+  .wm-sheet-tabs {
+    display: none !important;
+  }
+
+  /*  ERP  */
+  html.wm-active.wm-theme-erp body {
+    margin-top: 76px !important;
+    margin-left: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .wm-erp-sidemenu,
+  .wm-erp-row-numbers,
+  .wm-erp-col-headers,
+  .wm-erp-table-header,
+  .wm-erp-tabs {
+    display: none !important;
+  }
+
+  .wm-erp-filterbar {
+    left: 0 !important;
+  }
+
+  /*  Email  */
+  html.wm-active.wm-theme-email body {
+    margin-top: 76px !important;
+    margin-left: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .wm-email-sidemenu,
+  .wm-email-mail-list,
+  .wm-email-col-headers,
+  .wm-email-footer {
+    display: none !important;
+  }
+
+  .wm-email-toolbar {
+    left: 0 !important;
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "WorkMode",
+  "version": "1.0.0",
+  "description": "어떤 웹사이트든 토글 하나로 집중 모드로 전환하는 크롬 익스텐션",
+  "permissions": ["storage", "tabs"],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/inject.js"],
+      "css": [
+        "content/styles/base.css",
+        "content/styles/hide-images.css",
+        "content/styles/hide-videos.css"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "commands": {
+    "toggle-workmode": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Q"
+      },
+      "description": "WorkMode ON/OFF 토글"
+    },
+    "boss-key": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+E"
+      },
+      "description": "Boss Key — 안전 URL로 즉시 이동"
+    }
+  }
+}

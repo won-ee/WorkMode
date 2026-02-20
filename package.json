@@ -1,0 +1,19 @@
+{
+  "name": "workmode",
+  "version": "1.0.0",
+  "description": "어떤 웹사이트든 토글 하나로 집중 모드로 전환하는 크롬 익스텐션",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch --mode development",
+    "build": "tsc --noEmit && node scripts/build.mjs",
+    "zip": "node scripts/zip.mjs"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.36",
+    "sharp": "^0.34.5",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-static-copy": "^3.2.0"
+  }
+}
