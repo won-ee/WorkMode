@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "WorkMode",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "어떤 웹사이트든 토글 하나로 집중 모드로 전환하는 크롬 익스텐션",
   "permissions": ["storage", "tabs"],
   "action": {
