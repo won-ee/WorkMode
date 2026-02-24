@@ -36,13 +36,13 @@
   "commands": {
     "toggle-workmode": {
       "suggested_key": {
-        "default": "Ctrl+Shift+Q"
+        "default": "Alt+Shift+Q"
       },
       "description": "WorkMode ON/OFF 토글"
     },
     "boss-key": {
       "suggested_key": {
-        "default": "Ctrl+Shift+E"
+        "default": "Alt+Shift+E"
       },
       "description": "Boss Key — 안전 URL로 즉시 이동"
     }
