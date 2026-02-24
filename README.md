@@ -3,7 +3,7 @@
 > 열린 사무실에서 모니터 시선이 신경 쓰일 때 만든 크롬 익스텐션
 
 아무 웹사이트나 토글 하나로 업무용 화면처럼 바꿔줍니다.
-`Ctrl+Shift+Q` 한 번이면 스프레드시트 보는 것처럼 보입니다.
+`Alt+Shift+Q` 한 번이면 스프레드시트 보는 것처럼 보입니다.
 
 <p align="center">
   <img src="img/marquee_promo_1400x560.png" alt="WorkMode Banner" width="700">
@@ -39,7 +39,7 @@
 - **콘텐츠 중립화** — 페이지의 색상을 무채색으로 바꾸고 이미지/동영상/이모지를 숨김
 - **테마 위장** — 4가지 테마로 페이지를 업무용 화면처럼 위장
 - **탭 위장** — 탭 제목과 파비콘도 변경 (ON/OFF 가능)
-- **Boss Key** — `Ctrl+Shift+E`로 설정한 URL로 즉시 이동
+- **Boss Key** — `Alt+Shift+E`로 설정한 URL로 즉시 이동
 - **사이트별 제외** — 특정 사이트에서는 WorkMode 비활성화 가능
 - **반응형 오버레이** — 좁은 화면에서 사이드바 자동 축소/숨김
 
@@ -47,8 +47,8 @@
 
 | 단축키 | 기능 |
 |--------|------|
-| `Ctrl+Shift+Q` | WorkMode ON/OFF |
-| `Ctrl+Shift+E` | Boss Key (긴급 탈출) |
+| `Alt+Shift+Q` | WorkMode ON/OFF |
+| `Alt+Shift+E` | Boss Key (긴급 탈출) |
 
 ---
 
