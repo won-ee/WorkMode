@@ -55,7 +55,7 @@
 ## 설치
 
 ### 크롬 웹 스토어
-[WorkMode)](https://chromewebstore.google.com/detail/workmode/bhlogidmgleimkialmcddgbmkibkkmba?authuser=0&hl=ko)
+[WorkMode](https://chromewebstore.google.com/detail/workmode/bhlogidmgleimkialmcddgbmkibkkmba?authuser=0&hl=ko)
 
 ### 직접 설치 (개발용)
 
